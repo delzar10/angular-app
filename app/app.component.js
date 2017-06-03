@@ -1,4 +1,4 @@
-System.register(['angular2/core', './courses.component', './favorite.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './like.component', './courses.component', './favorite.component', './voter.component', './tweets.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,28 +10,46 @@ System.register(['angular2/core', './courses.component', './favorite.component']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, courses_component_1, favorite_component_1;
+    var core_1, like_component_1, courses_component_1, favorite_component_1, voter_component_1, tweets_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (like_component_1_1) {
+                like_component_1 = like_component_1_1;
+            },
             function (courses_component_1_1) {
                 courses_component_1 = courses_component_1_1;
             },
             function (favorite_component_1_1) {
                 favorite_component_1 = favorite_component_1_1;
+            },
+            function (voter_component_1_1) {
+                voter_component_1 = voter_component_1_1;
+            },
+            function (tweets_component_1_1) {
+                tweets_component_1 = tweets_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
                     this.title = "Angular App";
+                    this.tweet = {
+                        totalLikes: 10,
+                        iLike: false
+                    };
                     this.post = {
                         title: "Title",
-                        isFavorite: true
+                        isFavorite: true,
+                        myVote: 0,
+                        voteCount: 10
                     };
                 }
+                AppComponent.prototype.onFavoriteChange = function ($event) {
+                    alert(console.log($event));
+                };
                 AppComponent.prototype.onClick = function ($event) {
                     $event.stopPropagation();
                     console.log($event);
@@ -42,11 +60,14 @@ System.register(['angular2/core', './courses.component', './favorite.component']
                 AppComponent.prototype.onClickFavorite = function () {
                     this.post.isFavorite = !this.post.isFavorite;
                 };
+                AppComponent.prototype.onVote = function ($event) {
+                    console.log($event);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1>Hello Angular</h1>\n    <favorite [is-favorite]=\"post.isFavorite\"></favorite>\n    Preview: {{ post.isFavorite }}\n\n    <!--input type=\"text\" [value]=\"title\" (input)=\"title = $event.target.value\" />\n    <input type=\"text\" [(ngModel)]=\"title\" />\n    <input type=\"text\" bindon-ngModel=\"title\" />\n    <button type=\"button\" (click)=\"title = ''\" value=\"Clear\">\n    Preview: {{title}}\n    <div (click)=\"onDivClick($event)\">\n      <button (click)=\"onClick($event)\">Submit</button>\n      <button on-click=\"onClick($event)\">Submit</button>\n      <courses></courses>\n    </div-->\n    ",
-                        directives: [courses_component_1.CoursesComponent, favorite_component_1.FavoriteComponent]
+                        templateUrl: 'app/app.template.html',
+                        directives: [courses_component_1.CoursesComponent, favorite_component_1.FavoriteComponent, like_component_1.LikeComponent, voter_component_1.VoterComponent, tweets_component_1.TweetsComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

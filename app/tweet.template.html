@@ -1,0 +1,13 @@
+        <div class="media">
+            <div class="media-left media-middle">
+              <a href="#">
+                <img class="media-object" [src]="tweet.imageUrl" [alt]="tweet.author">
+              </a>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{ tweet.author }}</h4>
+              <h4 class="media-heading">{{ tweet.handle }}</h4>
+              {{ tweet.comment }}
+            </div>
+            <like [totalLikes]="tweet.totalLikes" [iLike]="tweet.iLike"></like>
+          </div>
