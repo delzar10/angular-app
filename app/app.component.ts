@@ -1,13 +1,18 @@
 import {Component} from 'angular2/core';
 import {CoursesComponent} from './courses.component';
 import {FavoriteComponent} from './favorite.component';
+import {ObservableComponent} from './observable.component';
+import {PostComponent} from './post.component';
 
 @Component({
     selector: 'my-app',
     template: `
-    <h1>Hello Angular</h1>
-    <favorite [is-favorite]="post.isFavorite"></favorite>
-    Preview: {{ post.isFavorite }}
+    <div class="container">
+      <h1>Spotify</h1>
+      <!--favorite [is-favorite]="post.isFavorite"></favorite-->
+      <post></post>
+      <!--observable></observable-->
+    </div>
 
     <!--input type="text" [value]="title" (input)="title = $event.target.value" />
     <input type="text" [(ngModel)]="title" />
@@ -20,7 +25,7 @@ import {FavoriteComponent} from './favorite.component';
       <courses></courses>
     </div-->
     `,
-    directives: [CoursesComponent, FavoriteComponent]
+    directives: [CoursesComponent, FavoriteComponent, ObservableComponent, PostComponent]
 })
 export class AppComponent {
     title: string = "Angular App";
